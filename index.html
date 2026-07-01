@@ -96,13 +96,14 @@ body {
 .envelope::before {
   content: "♡";
   position: absolute;
-  top: 80px;
-  left: 145px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -35%);
   font-size: 42px;
   color: rgba(255,255,255,0.65);
   z-index: 6;
+  pointer-events: none;
 }
-
 .flap {
   position: absolute;
   inset: 0 0 auto 0;
@@ -329,20 +330,25 @@ button:hover {
     overflow: hidden;
   }
 
-  .main {
-    transform: scale(.92);
-  }
+ .main {
+  transform: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
   .envelope {
     width: 290px;
     height: 190px;
   }
 
-  .envelope::before {
-    top: 68px;
-    left: 126px;
-    font-size: 38px;
-  }
+ .envelope::before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  font-size: 38px;
+}
 
   .flap {
     inset: 0 0 auto 0;
