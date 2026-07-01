@@ -96,14 +96,13 @@ body {
 .envelope::before {
   content: "♡";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -35%);
+  top: 80px;
+  left: 145px;
   font-size: 42px;
   color: rgba(255,255,255,0.65);
   z-index: 6;
-  pointer-events: none;
 }
+
 .flap {
   position: absolute;
   inset: 0 0 auto 0;
@@ -213,7 +212,7 @@ body {
 
 .letter p {
   flex: 1;
-  overflow: hidden;
+  overflow-y: auto;
   margin: 0;
   font-size: 18px;
   line-height: 1.9;
@@ -330,25 +329,20 @@ button:hover {
     overflow: hidden;
   }
 
- .main {
-  transform: none;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .main {
+    transform: scale(.92);
+  }
 
   .envelope {
     width: 290px;
     height: 190px;
   }
 
- .envelope::before {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -35%);
-  font-size: 38px;
-}
+  .envelope::before {
+    top: 68px;
+    left: 126px;
+    font-size: 38px;
+  }
 
   .flap {
     inset: 0 0 auto 0;
@@ -363,46 +357,46 @@ button:hover {
   }
 
   .letter {
-    width: min(94vw, 460px);
-    aspect-ratio: 1 / 1.48;
-    height: auto;
-    max-height: 88vh;
-    padding: 34px 24px 68px;
+    width: 94vw;
+    height: 88dvh;
+    max-width: none;
+    max-height: none;
+    padding: 45px 24px 82px;
     border-radius: 18px;
   }
 
   .letter p {
     flex: 1;
-    overflow: hidden;
-    font-size: clamp(12px, 3.35vw, 14px);
-    line-height: 1.45;
+    overflow-y: auto;
+    font-size: clamp(13px, 3.7vw, 15px);
+    line-height: 1.65;
     text-align: justify !important;
     text-align-last: left;
-    padding-right: 2px;
+    padding-right: 4px;
     hyphens: auto;
     word-spacing: 1px;
   }
 
   .page-number {
-    font-size: 12px;
-    margin-top: 8px;
+    font-size: 13px;
+    margin-top: 12px;
     margin-bottom: 6px;
   }
 
   .buttons {
     gap: 10px;
-    padding-top: 8px;
+    padding-top: 10px;
   }
 
   button {
-    padding: 8px 18px;
-    font-size: 13px;
+    padding: 10px 22px;
+    font-size: 14px;
   }
 
   .closeLetter {
-    top: 12px;
-    right: 17px;
-    font-size: 23px;
+    top: 14px;
+    right: 18px;
+    font-size: 24px;
   }
 
   .photo-box {
@@ -463,7 +457,7 @@ button:hover {
 
   <p id="letterText"></p>
 
-  <div class="page-number" id="pageNumber">❀ 1 / 5 ❀</div>
+  <div class="page-number" id="pageNumber">❀ 1 / 4 ❀</div>
 
   <div class="buttons">
     <button onclick="prevPage()">Back</button>
@@ -490,33 +484,23 @@ const pageNumber = document.getElementById("pageNumber");
 
 const pages = [
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st Day of July na ohhh HAHAHAHAHA, and ang bilis din talag ng panahon. Knowing you was so unexpected, but I really enjoy every moment na mas nakikilala kita. Lalo na yung mga gala natin, chikahan, kulitan, and of course every simple moments na di ko akalain magiging favorite memories ko.<br><br>
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HAHAHAHA parang kailan lang medyo magulo pa tayo dahil sa may issue "you know who" nyahahahaha. Pero look at us now, super happy na hindi yun ang naging dahilan para mawala or maputol ang connection natin.`,
 
-`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I also want to say sorry. Sorry if may times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga.<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like ayun na yung last na connection natin.`,
-
-`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pero thank you sobraa. Thank you for staying. Thank you kasi hindi mo ako nilayuan.<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you at sinupportahan mo ako sa thesis for always giving me courage na matatapos yan, and makaka graduate ka, thank you suuppeer. And thank you din dahil isa ka sa taong nag pasaya sakin this past few months.`,
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I also want to say sorry. Sorry if may times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga. And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like ayun na yung last na connection natin.<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pero thank you sobraa. Thank you for staying. Thank you kasi hindi mo ako nilayuan. Thank you at sinupportahan mo ako sa thesis for always giving me courage na matatapos yan, and makaka graduate ka, thank you suuppeer. And thank you din dahil isa ka sa taong nag pasaya sakin this past few months.`,
 
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arianne, I really like you, especially ngayon na mas nakilala na kita at mas patuloy pa kitang kinikilala. Honestly, habang mas nakakasama at nakikilala kita, mas lalong lumalalim yung feelings ko para sa'yo. HAHAHAHA.<br><br>
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alam mo naman na hindi ako nandito para sa "jowa-jowa" lang. I'm here because I'm looking for a serious, long-term, and lasting relationship.<br><br>
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hindi kita mamadaliin sa kahit anong nararamdaman mo. Take your time. Hindi ko ine-expect na kailangan mong suklian agad yung feelings ko ngayon. I just wanted to say this again because I want you to know kung gaano ako ka seryoso sayo.`,
 
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Promise ko sayo na I'll stay loyal to you, respect you, support you, and always treat you with the same love and respect kagaya kung pano ko tratuhin mama ko. I'll always do my best to make you feel valued, appreciated, and secure.<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marami pa tayo pag dadaan at di natin alam ang mga mang yayari in the future, Pero now Im supper thankful na nag kakilala tayo. You are my unexpected blessing na dumating sa buhayy ko this year.<br><br>
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marami pa tayo pag dadaan at di natin alam ang mang yayari in the future, Pero now Im supper thankful na nag kakilala tayo. You are my unexpected blessing na dumating sa buhayy ko this year.<br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Happy First Day of July. Hoping na nag enjoy kadin and hoping na mas marami pa tayong memories na magawa together. Thank you so much for being youuu.`
 ];
 
 let currentPage = 0;
 letterText.innerHTML = pages[currentPage];
-pageNumber.textContent = `${currentPage + 1} / ${pages.length}`;
+pageNumber.textContent = `❀ ${currentPage + 1} / ${pages.length} ❀`;
 
 function openEnvelope() {
   envelope.classList.add("open");
@@ -552,13 +536,21 @@ function updatePage() {
 
 function nextPage() {
   currentPage++;
-  if (currentPage >= pages.length) currentPage = 0;
+
+  if (currentPage >= pages.length) {
+    currentPage = 0;
+  }
+
   updatePage();
 }
 
 function prevPage() {
   currentPage--;
-  if (currentPage < 0) currentPage = pages.length - 1;
+
+  if (currentPage < 0) {
+    currentPage = pages.length - 1;
+  }
+
   updatePage();
 }
 
