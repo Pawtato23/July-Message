@@ -49,12 +49,14 @@ body {
   filter: blur(2px);
 }
 
-.flower {
-  position: absolute;
-  font-size: 34px;
-  cursor: pointer;
-  animation: float 5s ease-in-out infinite;
-  transition: 0.3s;
+.flower{
+    position:absolute;
+    font-size:42px;
+    cursor:pointer;
+    animation:float 5s ease-in-out infinite;
+    transition:.3s;
+    user-select:none;
+    filter:drop-shadow(0 6px 8px rgba(0,0,0,.15));
 }
 
 .flower:hover {
@@ -424,9 +426,9 @@ button:hover {
     padding: 0 10px;
   }
 
-  .flower {
-    font-size: 28px;
-  }
+  .flower{
+    font-size:34px;
+}
 }
 </style>
 </head>
@@ -437,31 +439,68 @@ button:hover {
 
 <div class="flower-bg">
 
-  <!-- Clickable flowers -->
-  <span class="flower"
-        style="top:15%; left:24%;"
-        onclick="showPhoto('IMG_20260608_183658_268.jpg','One of my favorite memories with you ❤️')">
-        🌸
-  </span>
+    <!-- Memory Flowers -->
 
-  <span class="flower"
-        style="top:18%; right:24%;"
-        onclick="showPhoto('IMG_20260621_204516_700.jpg','Every moment with me makes me smile 🌷')">
-        🌷
-  </span>
+    <span class="flower"
+          style="top:18%; left:24%; transform:rotate(-15deg);"
+          onclick="showPhoto('IMG_20260608_183658_268.jpg','One of my favorite memories with you ❤️')">
+          🌸
+    </span>
 
-  <span class="flower"
-        style="bottom:18%; left:22%;"
-        onclick="showPhoto('IMG_20260624_165015_257.jpg','I hope we make many more<br>memories together 🌹')">
-        🌹
-  </span>
+    <span class="flower"
+          style="top:20%; right:23%; transform:rotate(18deg);"
+          onclick="showPhoto('IMG_20260621_204516_700.jpg','Every moment with you makes me smile 🌷')">
+          🌷
+    </span>
 
-  
-  <span class="flower" style="top:12%; left:43%;">💐</span>
-  <span class="flower" style="top:36%; left:16%;">🌼</span>
-  <span class="flower" style="top:36%; right:16%;">🌺</span>
-  <span class="flower" style="bottom:18%; right:22%;">🌻</span>
-  <span class="flower" style="bottom:8%; left:46%;">🌸</span>
+    <span class="flower"
+          style="bottom:18%; left:24%; transform:rotate(-12deg);"
+          onclick="showPhoto('IMG_20260624_165015_257.jpg','I hope we make many more<br>memories together 🌹')">
+          🌹
+    </span>
+
+
+    <!-- Decorative Flowers -->
+
+    <span class="flower"
+          style="top:8%; left:41%; transform:rotate(-20deg);">
+          💐
+    </span>
+
+    <span class="flower"
+          style="top:33%; left:10%; transform:rotate(15deg);">
+          🌼
+    </span>
+
+    <span class="flower"
+          style="top:30%; right:11%; transform:rotate(-10deg);">
+          🌺
+    </span>
+
+    <span class="flower"
+          style="bottom:14%; right:20%; transform:rotate(12deg);">
+          🌻
+    </span>
+
+    <span class="flower"
+          style="bottom:6%; left:46%; transform:rotate(-8deg);">
+          🌸
+    </span>
+
+    <span class="flower"
+          style="top:56%; left:8%; transform:rotate(22deg);">
+          🌷
+    </span>
+
+    <span class="flower"
+          style="top:62%; right:9%; transform:rotate(-18deg);">
+          🌹
+    </span>
+
+    <span class="flower"
+          style="top:12%; right:39%; transform:rotate(28deg);">
+          🌼
+    </span>
 
 </div>
 
