@@ -357,19 +357,19 @@ button:hover {
   }
 
   .letter {
-    width: 94vw;
-    height: 88dvh;
-    max-width: none;
-    max-height: none;
-    padding: 45px 24px 82px;
+    width: min(90vw, 430px);
+    aspect-ratio: 1 / 1.414;
+    height: auto;
+    max-height: 80vh;
+    padding: 34px 24px 70px;
     border-radius: 18px;
   }
 
   .letter p {
     flex: 1;
     overflow-y: auto;
-    font-size: clamp(13px, 3.7vw, 15px);
-    line-height: 1.65;
+    font-size: 14px;
+    line-height: 1.55;
     text-align: justify !important;
     text-align-last: left;
     padding-right: 4px;
@@ -378,25 +378,25 @@ button:hover {
   }
 
   .page-number {
-    font-size: 13px;
-    margin-top: 12px;
+    font-size: 12px;
+    margin-top: 8px;
     margin-bottom: 6px;
   }
 
   .buttons {
     gap: 10px;
-    padding-top: 10px;
+    padding-top: 8px;
   }
 
   button {
-    padding: 10px 22px;
-    font-size: 14px;
+    padding: 8px 18px;
+    font-size: 13px;
   }
 
   .closeLetter {
-    top: 14px;
-    right: 18px;
-    font-size: 24px;
+    top: 12px;
+    right: 17px;
+    font-size: 23px;
   }
 
   .photo-box {
@@ -536,21 +536,13 @@ function updatePage() {
 
 function nextPage() {
   currentPage++;
-
-  if (currentPage >= pages.length) {
-    currentPage = 0;
-  }
-
+  if (currentPage >= pages.length) currentPage = 0;
   updatePage();
 }
 
 function prevPage() {
   currentPage--;
-
-  if (currentPage < 0) {
-    currentPage = pages.length - 1;
-  }
-
+  if (currentPage < 0) currentPage = pages.length - 1;
   updatePage();
 }
 
