@@ -212,7 +212,7 @@ body {
 
 .letter p {
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
   margin: 0;
   font-size: 18px;
   line-height: 1.9;
@@ -357,22 +357,22 @@ button:hover {
   }
 
   .letter {
-    width: min(90vw, 430px);
-    aspect-ratio: 1 / 1.414;
+    width: min(94vw, 460px);
+    aspect-ratio: 1 / 1.48;
     height: auto;
-    max-height: 80vh;
-    padding: 34px 24px 70px;
+    max-height: 88vh;
+    padding: 34px 24px 68px;
     border-radius: 18px;
   }
 
   .letter p {
     flex: 1;
-    overflow-y: auto;
-    font-size: 14px;
-    line-height: 1.55;
+    overflow: hidden;
+    font-size: clamp(12px, 3.35vw, 14px);
+    line-height: 1.45;
     text-align: justify !important;
     text-align-last: left;
-    padding-right: 4px;
+    padding-right: 2px;
     hyphens: auto;
     word-spacing: 1px;
   }
@@ -457,7 +457,7 @@ button:hover {
 
   <p id="letterText"></p>
 
-  <div class="page-number" id="pageNumber">❀ 1 / 4 ❀</div>
+  <div class="page-number" id="pageNumber">❀ 1 / 5 ❀</div>
 
   <div class="buttons">
     <button onclick="prevPage()">Back</button>
@@ -484,23 +484,33 @@ const pageNumber = document.getElementById("pageNumber");
 
 const pages = [
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st Day of July na ohhh HAHAHAHAHA, and ang bilis din talag ng panahon. Knowing you was so unexpected, but I really enjoy every moment na mas nakikilala kita. Lalo na yung mga gala natin, chikahan, kulitan, and of course every simple moments na di ko akalain magiging favorite memories ko.<br><br>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HAHAHAHA parang kailan lang medyo magulo pa tayo dahil sa may issue "you know who" nyahahahaha. Pero look at us now, super happy na hindi yun ang naging dahilan para mawala or maputol ang connection natin.`,
 
-`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I also want to say sorry. Sorry if may times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga. And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like ayun na yung last na connection natin.<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pero thank you sobraa. Thank you for staying. Thank you kasi hindi mo ako nilayuan. Thank you at sinupportahan mo ako sa thesis for always giving me courage na matatapos yan, and makaka graduate ka, thank you suuppeer. And thank you din dahil isa ka sa taong nag pasaya sakin this past few months.`,
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I also want to say sorry. Sorry if may times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga.<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like ayun na yung last na connection natin.`,
+
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pero thank you sobraa. Thank you for staying. Thank you kasi hindi mo ako nilayuan.<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you at sinupportahan mo ako sa thesis for always giving me courage na matatapos yan, and makaka graduate ka, thank you suuppeer. And thank you din dahil isa ka sa taong nag pasaya sakin this past few months.`,
 
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arianne, I really like you, especially ngayon na mas nakilala na kita at mas patuloy pa kitang kinikilala. Honestly, habang mas nakakasama at nakikilala kita, mas lalong lumalalim yung feelings ko para sa'yo. HAHAHAHA.<br><br>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alam mo naman na hindi ako nandito para sa "jowa-jowa" lang. I'm here because I'm looking for a serious, long-term, and lasting relationship.<br><br>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hindi kita mamadaliin sa kahit anong nararamdaman mo. Take your time. Hindi ko ine-expect na kailangan mong suklian agad yung feelings ko ngayon. I just wanted to say this again because I want you to know kung gaano ako ka seryoso sayo.`,
 
 `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Promise ko sayo na I'll stay loyal to you, respect you, support you, and always treat you with the same love and respect kagaya kung pano ko tratuhin mama ko. I'll always do my best to make you feel valued, appreciated, and secure.<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marami pa tayo pag dadaan at di natin alam ang mang yayari in the future, Pero now Im supper thankful na nag kakilala tayo. You are my unexpected blessing na dumating sa buhayy ko this year.<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marami pa tayo pag dadaan at di natin alam ang mga mang yayari in the future, Pero now Im supper thankful na nag kakilala tayo. You are my unexpected blessing na dumating sa buhayy ko this year.<br><br>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Happy First Day of July. Hoping na nag enjoy kadin and hoping na mas marami pa tayong memories na magawa together. Thank you so much for being youuu.`
 ];
 
 let currentPage = 0;
 letterText.innerHTML = pages[currentPage];
-pageNumber.textContent = `❀ ${currentPage + 1} / ${pages.length} ❀`;
+pageNumber.textContent = `${currentPage + 1} / ${pages.length}`;
 
 function openEnvelope() {
   envelope.classList.add("open");
