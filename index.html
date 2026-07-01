@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -210,22 +210,20 @@
     transform: rotate(90deg) scale(1.1);
   }
 
-  .letter h2 {
-    margin: 0 0 18px;
-    color: #b64068;
-    font-size: 24px;
-    text-align: center;
-  }
-
   .letter p {
-  flex: 1;
-  overflow-y: auto;
-  font-size: clamp(13px, 3.7vw, 15px);
-  line-height: 1.65;
-  text-align: justify;
-  text-align-last: left;
-  padding-right: 4px;
-}
+    flex: 1;
+    overflow-y: auto;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #4c3a35;
+    text-align: justify !important;
+    text-align-last: left;
+    white-space: pre-line;
+    transition: 0.25s ease;
+    hyphens: auto;
+    word-spacing: 1px;
+  }
 
   .buttons {
     margin-top: auto;
@@ -259,25 +257,39 @@
   .photo-popup {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,0.72);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 40;
+    padding: 18px;
   }
 
   .photo-box {
-    background: white;
+    background: #fffaf2;
     padding: 14px;
-    border-radius: 18px;
+    border-radius: 20px;
     position: relative;
     animation: pop 0.35s ease;
+    max-width: 92vw;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    border: 2px solid #f0c7b5;
   }
 
   .photo-box img {
-    max-width: 300px;
-    max-height: 420px;
-    border-radius: 14px;
+    max-width: 340px;
+    max-height: 470px;
+    border-radius: 16px;
+    display: block;
+    object-fit: contain;
+  }
+
+  #photoCaption {
+    margin: 15px 8px 4px;
+    font-size: 16px;
+    font-style: italic;
+    color: #b14f75;
+    text-align: center;
   }
 
   .close {
@@ -343,22 +355,14 @@
       border-radius: 18px;
     }
 
-    .letter h2 {
-      font-size: 22px;
-    }
-
-   .letter p {
+    .letter p {
       flex: 1;
       overflow-y: auto;
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.9;
-      color: #4c3a35;
+      font-size: clamp(13px, 3.7vw, 15px);
+      line-height: 1.65;
       text-align: justify !important;
       text-align-last: left;
-      white-space: pre-line;
-      transition: 0.25s ease;
-    
+      padding-right: 4px;
       hyphens: auto;
       word-spacing: 1px;
     }
@@ -391,6 +395,10 @@
       object-fit: contain;
     }
 
+    #photoCaption {
+      font-size: 14px;
+    }
+
     .note {
       font-size: 14px;
       padding: 0 10px;
@@ -408,11 +416,13 @@
 <div class="overlay" onclick="closeLetter()"></div>
 
 <div class="flower-bg">
-  <span class="flower" style="top:8%; left:10%;" onclick="showPhoto('photo1.jpg')">🌸</span>
-  <span class="flower" style="top:18%; left:80%;" onclick="showPhoto('photo2.jpg')">🌷</span>
-  <span class="flower" style="top:70%; left:12%;" onclick="showPhoto('photo3.jpg')">🌹</span>
-  <span class="flower" style="top:75%; left:78%;" onclick="showPhoto('photo4.jpg')">🌻</span>
+  <span class="flower" style="top:8%; left:10%;" onclick="showPhoto('IMG_20260608_183658_268.jpg', 'One of my favorite memories with you ❤️')">🌸</span>
 
+  <span class="flower" style="top:18%; left:80%;" onclick="showPhoto('IMG_20260621_204516_700.jpg', 'Every moment with you makes me smile 🌷')">🌷</span>
+
+  <span class="flower" style="top:70%; left:12%;" onclick="showPhoto('IMG_20260624_165015_257.jpg', 'I hope we make many more memories together 🌹')">🌹</span>
+
+  <span class="flower" style="top:75%; left:78%;">🌻</span>
   <span class="flower" style="top:42%; left:6%;">🌼</span>
   <span class="flower" style="top:10%; left:45%;">💐</span>
   <span class="flower" style="top:55%; left:90%;">🌺</span>
@@ -432,7 +442,6 @@
   <div class="paper-design"></div>
   <div class="closeLetter" onclick="closeLetter()">×</div>
 
-  
   <p id="letterText"></p>
 
   <div class="buttons">
@@ -445,6 +454,7 @@
   <div class="photo-box" onclick="event.stopPropagation()">
     <div class="close" onclick="closePhoto()">×</div>
     <img id="popupImg" src="" alt="photo" />
+    <p id="photoCaption"></p>
   </div>
 </div>
 
@@ -532,8 +542,9 @@ Happy First Day of July. Hoping na nag enjoy kadin and Hoping na mas marami pa t
     updatePage();
   }
 
-  function showPhoto(photoPath) {
+  function showPhoto(photoPath, caption) {
     document.getElementById("popupImg").src = photoPath;
+    document.getElementById("photoCaption").textContent = caption;
     document.getElementById("popup").style.display = "flex";
   }
 
