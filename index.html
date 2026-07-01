@@ -531,7 +531,7 @@ button:hover {
 
   <p id="letterText"></p>
 
-  <div class="page-number" id="pageNumber"> 1 / 4 </div>
+  <div class="page-number" id="pageNumber">❀ 1 / 4 ❀</div>
 
   <div class="buttons">
     <button onclick="prevPage()">Back</button>
@@ -576,7 +576,7 @@ const pages = [
 
 let currentPage = 0;
 letterText.innerHTML = pages[currentPage];
-pageNumber.textContent = `${currentPage + 1} / ${pages.length}`;
+pageNumber.textContent = `❀${currentPage + 1} / ${pages.length}❀ `;
 
 function openEnvelope() {
   envelope.classList.add("open");
