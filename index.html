@@ -347,13 +347,20 @@
       font-size: 22px;
     }
 
-    .letter p {
+   .letter p {
       flex: 1;
       overflow-y: auto;
-      font-size: clamp(13px, 3.7vw, 15px);
-      line-height: 1.65;
-      text-align: left;
-      padding-right: 4px;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.9;
+      color: #4c3a35;
+      text-align: justify !important;
+      text-align-last: left;
+      white-space: pre-line;
+      transition: 0.25s ease;
+    
+      hyphens: auto;
+      word-spacing: 1px;
     }
 
     .buttons {
