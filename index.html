@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>July Letter</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: Georgia, serif;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffd6e8, #fff4ec);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.6s ease;
+    z-index: 8;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .flower-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    transition: 0.6s ease;
+  }
+
+  .flower-bg.dim {
+    opacity: 0.35;
+    filter: blur(2px);
+  }
+
+  .flower {
+    position: absolute;
+    font-size: 34px;
+    cursor: pointer;
+    animation: float 5s ease-in-out infinite;
+    transition: 0.3s;
+  }
+
+  .flower:hover {
+    transform: scale(1.35) rotate(15deg);
+  }
+
+  @keyframes float {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -18px; }
+  }
+
+  .main {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    transition: 0.6s ease;
+  }
+
+  .main.dim {
+    opacity: 0.45;
+    filter: blur(2px);
+  }
+
+  .envelope {
+    width: 330px;
+    height: 220px;
+    background: linear-gradient(145deg, #d85f87, #f29ab2);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    transition: 0.4s ease;
+  }
+
+  .envelope:hover {
+    transform: translateY(-8px);
+  }
+
+  .envelope::before {
+    content: "♡";
+    position: absolute;
+    top: 80px;
+    left: 145px;
+    font-size: 42px;
+    color: rgba(255,255,255,0.65);
+    z-index: 6;
+  }
+
+  .flap {
+    position: absolute;
+    inset: 0 0 auto 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(145deg, #d66890, #bc4d73);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border-radius: 12px 12px 0 0;
+    box-shadow:
+      inset 0 8px 15px rgba(255,255,255,.15),
+      inset 0 -8px 10px rgba(0,0,0,.12);
+    transform-origin: top;
+    transition: .9s ease;
+    z-index: 5;
+  }
+
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+  }
+
+  .front {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 125px;
+    background: linear-gradient(145deg, #e781a0, #f4aac0);
+    border-radius: 0 0 12px 12px;
+    z-index: 4;
+  }
+
+  .front::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, transparent 49%, rgba(255,255,255,0.25) 50%, transparent 51%),
+      linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.18) 50%, transparent 51%);
+  }
+
+  .letter {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: min(750px, 92vw);
+    height: min(760px, 90vh);
+    background: #fffaf2;
+    border: 2px solid #f0c7b5;
+    border-radius: 20px;
+    padding: 55px 55px 90px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.35);
+    transform: translate(-50%,-42%) scale(.65);
+    opacity: 0;
+    transition: .8s;
+    z-index: 20;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .letter.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .letter::before {
+    content: "✿";
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    color: #d85f87;
+    font-size: 24px;
+  }
+
+  .letter::after {
+    content: "♡";
+    position: absolute;
+    bottom: 16px;
+    right: 22px;
+    color: #d85f87;
+    font-size: 24px;
+  }
+
+  .paper-design {
+    position: absolute;
+    inset: 14px;
+    border: 1px dashed #e9b7a6;
+    border-radius: 14px;
+    pointer-events: none;
+  }
+
+  .closeLetter {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    cursor: pointer;
+    font-size: 26px;
+    color: #c94d76;
+    transition: 0.3s ease;
+    z-index: 3;
+  }
+
+  .closeLetter:hover {
+    transform: rotate(90deg) scale(1.1);
+  }
+
+  .letter h2 {
+    margin: 0 0 18px;
+    color: #b64068;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .letter p {
+    flex: 1;
+    overflow: hidden;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #4c3a35;
+    text-align: justify;
+    white-space: pre-line;
+    transition: 0.25s ease;
+  }
+
+  .buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 20px;
+  }
+
+  button {
+    border: none;
+    background: #c94d76;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+  }
+
+  button:hover {
+    background: #a93c60;
+    transform: scale(1.06);
+  }
+
+  .note {
+    margin-top: 25px;
+    color: #9d3d5e;
+  }
+
+  .photo-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 40;
+  }
+
+  .photo-box {
+    background: white;
+    padding: 14px;
+    border-radius: 18px;
+    position: relative;
+    animation: pop 0.35s ease;
+  }
+
+  .photo-box img {
+    max-width: 300px;
+    max-height: 420px;
+    border-radius: 14px;
+  }
+
+  .close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #c94d76;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @media screen and (max-width: 768px) {
+    body {
+      min-height: 100dvh;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .main {
+      transform: scale(.92);
+    }
+
+    .envelope {
+      width: 290px;
+      height: 190px;
+    }
+
+    .envelope::before {
+      top: 68px;
+      left: 126px;
+      font-size: 38px;
+    }
+
+    .flap {
+      inset: 0 0 auto 0;
+      width: 100%;
+      height: 104px;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border: none;
+    }
+
+    .front {
+      height: 110px;
+    }
+
+    .letter {
+      width: 94vw;
+      height: 88dvh;
+      max-width: none;
+      max-height: none;
+      padding: 45px 24px 85px;
+      border-radius: 18px;
+    }
+
+    .letter h2 {
+      font-size: 22px;
+    }
+
+    .letter p {
+      flex: 1;
+      overflow-y: auto;
+      font-size: clamp(13px, 3.7vw, 15px);
+      line-height: 1.65;
+      text-align: left;
+      padding-right: 4px;
+    }
+
+    .buttons {
+      gap: 10px;
+      padding-top: 15px;
+    }
+
+    button {
+      padding: 10px 22px;
+      font-size: 14px;
+    }
+
+    .closeLetter {
+      top: 14px;
+      right: 18px;
+      font-size: 24px;
+    }
+
+    .photo-box {
+      width: 92vw;
+      padding: 12px;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    .note {
+      font-size: 14px;
+      padding: 0 10px;
+    }
+
+    .flower {
+      font-size: 28px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="overlay" onclick="closeLetter()"></div>
+
+<div class="flower-bg">
+  <span class="flower" style="top:8%; left:10%;" onclick="showPhoto('photo1.jpg')">🌸</span>
+  <span class="flower" style="top:18%; left:80%;" onclick="showPhoto('photo2.jpg')">🌷</span>
+  <span class="flower" style="top:70%; left:12%;" onclick="showPhoto('photo3.jpg')">🌹</span>
+  <span class="flower" style="top:75%; left:78%;" onclick="showPhoto('photo4.jpg')">🌻</span>
+
+  <span class="flower" style="top:42%; left:6%;">🌼</span>
+  <span class="flower" style="top:10%; left:45%;">💐</span>
+  <span class="flower" style="top:55%; left:90%;">🌺</span>
+  <span class="flower" style="top:88%; left:40%;">🌸</span>
+</div>
+
+<div class="main">
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="flap"></div>
+    <div class="front"></div>
+  </div>
+
+  <p class="note">Click yung envelope tssk ano ako pa mag kiclick</p>
+</div>
+
+<div class="letter" onclick="event.stopPropagation()">
+  <div class="paper-design"></div>
+  <div class="closeLetter" onclick="closeLetter()">×</div>
+
+  
+  <p id="letterText"></p>
+
+  <div class="buttons">
+    <button onclick="prevPage()">Back</button>
+    <button onclick="nextPage()">Next</button>
+  </div>
+</div>
+
+<div class="photo-popup" id="popup" onclick="closePhoto()">
+  <div class="photo-box" onclick="event.stopPropagation()">
+    <div class="close" onclick="closePhoto()">×</div>
+    <img id="popupImg" src="" alt="photo" />
+  </div>
+</div>
+
+<script>
+  const envelope = document.querySelector(".envelope");
+  const letter = document.querySelector(".letter");
+  const overlay = document.querySelector(".overlay");
+  const main = document.querySelector(".main");
+  const flowerBg = document.querySelector(".flower-bg");
+  const letterText = document.getElementById("letterText");
+
+  const pages = [
+`1st Day of July na ohhh HAHAHAHAHA, and ang bilis din talag ng panahon. Knowing you was so unexpected, but I really enjoy every moment na mas nakikilala kita. Lalo na yung mga gala natin, chikahan, kulitan, and of course every simple moments na di ko akalain magiging favorite memories ko.
+
+HAHAHAHA parang kailan lang medyo magulo pa tayo dahil sa may issue "you know who" nyahahahaha. Pero look at as now, Super happy na hindi yun ang naging dahilan para mawala or maputol ang connectin natin.`,
+
+`I also want to say sorry. Sorry if my times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga. And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like Ayun na yung last na connection natin.
+
+Pero thank you sobraa. Thank you for staying. Thank you kasi hindi mo ako nilayuan. Thannk you at sinupportahan mo ako sa thesis for always giving me courage na matatapus yan, and makaka graduate ka, thank you suuppeer. And thank you din dahil isa ka sa taong nag pasaya sakin this past few months.`,
+
+`Arianne, I really like you, especially ngayon na mas nakilala na kita at mas patuloy pa kitang kinikilala. Honestly, habang mas nakakasama at nakikilala kita, mas lalong lumalalim yung feelings ko para sa'yo. HAHAHAHA.
+
+Alam mo naman na hindi ako nandito para sa "jowa-jowa" lang. I'm here because I'm looking for a serious, long-term, and lasting relationship.
+
+Hindi kita mamadaliin sa kahit anong nararamdaman mo. Take your time. Hindi ko ine-expect na kailangan mong suklian agad yung feelings ko ngayon. I just wanted to say this again because I want you to know kung gaano ako ka seryoso sayo.`,
+
+`Promise ko sayo na  Ill stay loyal to you, respect you, support you, and always treat you with the same love and respect  kagaya kung pano ko tratuhin mama ko. I'll always do my best to make you feel valued, appreciated, and secure.
+
+Marami pa tayo pag dadaan at di natin alam ang mang yayari in the future, Pero now Im supper thankful na nag kakilala tayo. You are my unexpected blessing na dumating sa buhayy ko this year.
+
+Happy First Day of July. Hoping na nag enjoy kadin and Hoping na mas marami pa tayong memories na magawa together. Thank you so much for being youuu.`
+];
+
+  let currentPage = 0;
+  letterText.textContent = pages[currentPage];
+
+  function openEnvelope() {
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+      letter.classList.add("show");
+      overlay.classList.add("show");
+      main.classList.add("dim");
+      flowerBg.classList.add("dim");
+    }, 450);
+  }
+
+  function closeLetter() {
+    letter.classList.remove("show");
+    overlay.classList.remove("show");
+    main.classList.remove("dim");
+    flowerBg.classList.remove("dim");
+
+    setTimeout(() => {
+      envelope.classList.remove("open");
+    }, 400);
+  }
+
+  function updatePage() {
+    letterText.style.opacity = 0;
+
+    setTimeout(() => {
+      letterText.textContent = pages[currentPage];
+      letterText.style.opacity = 1;
+    }, 180);
+  }
+
+  function nextPage() {
+    currentPage++;
+
+    if (currentPage >= pages.length) {
+      currentPage = 0;
+    }
+
+    updatePage();
+  }
+
+  function prevPage() {
+    currentPage--;
+
+    if (currentPage < 0) {
+      currentPage = pages.length - 1;
+    }
+
+    updatePage();
+  }
+
+  function showPhoto(photoPath) {
+    document.getElementById("popupImg").src = photoPath;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePhoto() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
