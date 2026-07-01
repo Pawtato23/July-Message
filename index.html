@@ -467,21 +467,21 @@
   const letterText = document.getElementById("letterText");
 
   const pages = [
-` 1st Day of July na ohhh HAHAHAHAHA, and ang bilis din talag ng panahon. Knowing you was so unexpected, but I really enjoy every moment na mas nakikilala kita. Lalo na yung mga gala natin, chikahan, kulitan, and of course every simple moments na di ko akalain magiging favorite memories ko.
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st Day of July na ohhh HAHAHAHAHA, and ang bilis din talag ng panahon. Knowing you was so unexpected, but I really enjoy every moment na mas nakikilala kita. Lalo na yung mga gala natin, chikahan, kulitan, and of course every simple moments na di ko akalain magiging favorite memories ko.
 
 HAHAHAHA parang kailan lang medyo magulo pa tayo dahil sa may issue "you know who" nyahahahaha. Pero look at as now, Super happy na hindi yun ang naging dahilan para mawala or maputol ang connectin natin.`,
 
-` I also want to say sorry. Sorry if my times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga. And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like Ayun na yung last na connection natin.
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I also want to say sorry. Sorry if my times na nagiging awkward ako, makulit, sa mga nasabi ko and nagawang hindi maganda na di mo nagustuhan like may times na nagiging forceful ako, I really sorry talaga. And sorry din na nag confess ako biglaan nung una HAHAHAHAA. Sa totoo lang akala ko talaga lalayuan mo ako eh like Ayun na yung last na connection natin.
 
 Pero thank you sobraa. Thank you for staying. Thank you kasi hindi mo ako nilayuan. Thannk you at sinupportahan mo ako sa thesis for always giving me courage na matatapus yan, and makaka graduate ka, thank you suuppeer. And thank you din dahil isa ka sa taong nag pasaya sakin this past few months.`,
 
-` Arianne, I really like you, especially ngayon na mas nakilala na kita at mas patuloy pa kitang kinikilala. Honestly, habang mas nakakasama at nakikilala kita, mas lalong lumalalim yung feelings ko para sa'yo. HAHAHAHA.
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arianne, I really like you, especially ngayon na mas nakilala na kita at mas patuloy pa kitang kinikilala. Honestly, habang mas nakakasama at nakikilala kita, mas lalong lumalalim yung feelings ko para sa'yo. HAHAHAHA.
 
 Alam mo naman na hindi ako nandito para sa "jowa-jowa" lang. I'm here because I'm looking for a serious, long-term, and lasting relationship.
 
 Hindi kita mamadaliin sa kahit anong nararamdaman mo. Take your time. Hindi ko ine-expect na kailangan mong suklian agad yung feelings ko ngayon. I just wanted to say this again because I want you to know kung gaano ako ka seryoso sayo.`,
 
-` Promise ko sayo na  Ill stay loyal to you, respect you, support you, and always treat you with the same love and respect  kagaya kung pano ko tratuhin mama ko. I'll always do my best to make you feel valued, appreciated, and secure.
+`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Promise ko sayo na  Ill stay loyal to you, respect you, support you, and always treat you with the same love and respect  kagaya kung pano ko tratuhin mama ko. I'll always do my best to make you feel valued, appreciated, and secure.
 
 Marami pa tayo pag dadaan at di natin alam ang mang yayari in the future, Pero now Im supper thankful na nag kakilala tayo. You are my unexpected blessing na dumating sa buhayy ko this year.
 
@@ -489,7 +489,7 @@ Happy First Day of July. Hoping na nag enjoy kadin and Hoping na mas marami pa t
 ];
 
   let currentPage = 0;
-  letterText.textContent = pages[currentPage];
+  letterText.innerHTML = pages[currentPage];
 
   function openEnvelope() {
     envelope.classList.add("open");
@@ -517,7 +517,7 @@ Happy First Day of July. Hoping na nag enjoy kadin and Hoping na mas marami pa t
     letterText.style.opacity = 0;
 
     setTimeout(() => {
-      letterText.textContent = pages[currentPage];
+      letterText.innerHTML = pages[currentPage];
       letterText.style.opacity = 1;
     }, 180);
   }
