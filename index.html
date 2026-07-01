@@ -321,19 +321,12 @@ button:hover {
 
 }
 
-.close {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  background: #c94d76;
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  font-weight: bold;
+.tapHint{
+    margin:0 0 12px;
+    text-align:center;
+    font-size:12px;
+    color:#b79b9b;
+    font-style:italic;
 }
 
 @keyframes pop {
@@ -547,11 +540,13 @@ button:hover {
 </div>
 
 <div class="photo-popup" id="popup" onclick="closePhoto()">
-  <div class="photo-box" onclick="event.stopPropagation()">
-    <div class="close" onclick="closePhoto()">×</div>
-    <img id="popupImg" src="" alt="photo" />
-    <p id="photoCaption"></p>
-  </div>
+    <div class="photo-box" onclick="event.stopPropagation()">
+
+        <img id="popupImg" src="" alt="photo">
+
+        <p id="photoCaption"></p>
+
+    </div>
 </div>
 
 <script>
