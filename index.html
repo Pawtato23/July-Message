@@ -434,7 +434,7 @@ button:hover {
 <div class="flower-bg">
   <span class="flower" style="top:8%; left:10%;" onclick="showPhoto('IMG_20260608_183658_268.jpg', 'One of my favorite memories with you ❤️')">🌸</span>
   <span class="flower" style="top:18%; left:80%;" onclick="showPhoto('IMG_20260621_204516_700.jpg', 'Every moment with you makes me smile 🌷')">🌷</span>
-  <span class="flower" style="top:70%; left:12%;" onclick="showPhoto('IMG_20260624_165015_257.jpg', 'I hope we make many more memories together 🌹')">🌹</span>
+ <span class="flower" style="top:70%; left:12%;" onclick="showPhoto('IMG_20260624_165015_257.jpg', 'I hope we make many more<br>memories together 🌹')">🌹</span>
   <span class="flower" style="top:75%; left:78%;">🌻</span>
   <span class="flower" style="top:42%; left:6%;">🌼</span>
   <span class="flower" style="top:10%; left:45%;">💐</span>
@@ -556,7 +556,7 @@ function prevPage() {
 
 function showPhoto(photoPath, caption) {
   document.getElementById("popupImg").src = photoPath;
-  document.getElementById("photoCaption").textContent = caption;
+  document.getElementById("photoCaption").innerHTML = caption;
   document.getElementById("popup").style.display = "flex";
 }
 
