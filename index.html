@@ -305,12 +305,20 @@ button:hover {
   object-fit: contain;
 }
 
-#photoCaption {
-  margin: 15px 8px 4px;
-  font-size: 16px;
-  font-style: italic;
-  color: #b14f75;
-  text-align: center;
+#photoCaption{
+
+    padding:15px;
+
+    margin:0;
+
+    background:white;
+
+    font-size:15px;
+
+    text-align:center;
+
+    color:#b14f75;
+
 }
 
 .close {
@@ -340,20 +348,33 @@ button:hover {
     overflow: hidden;
   }
 
-  .main {
-    transform: scale(.92);
-  }
+  .main{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transform:none;
+}
+  .envelope{
 
-  .envelope {
-    width: 290px;
-    height: 190px;
-  }
+    width:290px;
+    height:190px;
 
-  .envelope::before {
-    top: 68px;
-    left: 126px;
-    font-size: 38px;
-  }
+    margin:auto;
+
+}
+
+  .envelope::before{
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-35%);
+
+    font-size:38px;
+
+}
 
   .flap {
     inset: 0 0 auto 0;
@@ -410,17 +431,37 @@ button:hover {
     font-size: 23px;
   }
 
-  .photo-box {
-    width: 92vw;
-    padding: 12px;
-  }
+  .photo-box{
 
-  .photo-box img {
-    width: 100%;
-    height: auto;
-    max-height: 70vh;
-    object-fit: contain;
-  }
+    position:relative;
+
+    width:min(92vw,380px);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:white;
+
+    animation:pop .35s ease;
+
+    box-shadow:0 18px 45px rgba(0,0,0,.35);
+
+}
+
+  .photo-box img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    aspect-ratio:3/4;
+
+    object-fit:cover;
+
+}
 
   #photoCaption {
     font-size: 14px;
